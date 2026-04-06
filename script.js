@@ -26,11 +26,9 @@ allSections.forEach(function (section) {
 // Routing
 const routes = {
     "/": "index.html",
-    "/Mike-Brighton": "/pages/Mike-Brighton.html",
-    "/Kishis-restaurant": "/pages/Kishis-Restaurant.html",
-    "/International-Nursery-School": "/pages/International-Nursery-School.html",
-    "/Gabriella-Bilingual-School": "/pages/Gabriella-Bilingual-School.html",
-    "/Evelyn": "/pages/Evelyn.html"
+    "/about": "about.html",
+    "/academics": "academics.html",
+    "/admissions": "admissions.html"
 };
 
 const router = async () => {
