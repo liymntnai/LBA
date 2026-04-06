@@ -22,32 +22,52 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
-
 ///////////////////////////////////////
 // Routing
-function navigate(event, page) {
-    event.preventDefault(); // Prevent default link behavior
-    window.history.pushState({}, page, page);
-    fetchPageContent(page);
-}
-
-function fetchPageContent(page) {
-    fetch(page + '.html')
-        .then(response => {
-            if (!response.ok) throw new Error('Page not found');
-            return response.text();
-        })
-        .then(html => document.getElementById('content').innerHTML = html)
-        .catch(error => console.error(error));
-}
-
-// Handle page reloads
-window.onpopstate = () => {
-    fetchPageContent(window.location.pathname.substring(1) || 'home');
+const routes = {
+    "/": "index.html",
+    "/Mike-Brighton": "/pages/Mike-Brighton.html",
+    "/Kishis-restaurant": "/pages/Kishis-Restaurant.html",
+    "/International-Nursery-School": "/pages/International-Nursery-School.html",
+    "/Gabriella-Bilingual-School": "/pages/Gabriella-Bilingual-School.html",
+    "/Evelyn": "/pages/Evelyn.html"
 };
 
-// Initial load
-fetchPageContent(window.location.pathname.substring(1) || 'home');
+const router = async () => {
+    const path = window.location.pathname;
+    const resource = routes[path] || "/404.html";
+
+    // 1. Fetch the external HTML file
+    try {
+        const response = await fetch(resource);
+        
+        if (!response.ok) throw new Error("Page not found");
+        
+        // 2. Convert the response to text
+        const html = await response.text();
+
+        // 3. Inject it into the page
+        document.getElementById("app").innerHTML = html;
+    } catch (error) {
+        document.getElementById("app").innerHTML = "<h1>Error loading page</h1>";
+    }
+};
+
+// Standard navigation handling
+const navigateTo = (url) => {
+    window.history.pushState(null, null, url);
+    router();
+};
+
+document.body.addEventListener("click", e => {
+    if (e.target.matches("[data-link]")) {
+        e.preventDefault();
+        navigateTo(e.target.getAttribute("href"));
+    }
+});
+
+window.addEventListener("popstate", router);
+router();
 
 ///////////////////////////////////////
 // Navigation bar
