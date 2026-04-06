@@ -1,0 +1,139 @@
+h3,h6{
+    color: var(--dominant-blue);
+}
+
+.img>img{
+    border-radius:16px ;
+}
+.content-0.abouts{
+    gap: 120px;
+}
+/*Header*/
+.header-1{
+    padding:112px 64px;
+    background-color: var(--dominant-blue);
+    color: var(--complimentary);
+}
+/* About page */
+
+/** Staff section */
+
+/* Admissions page */
+.line
+{
+    height: 1px;
+    background-color: black;
+}
+
+/* Academics page */
+.overview{
+
+}
+.principles{
+    /* max-width: 412px; */
+}
+.one{
+    background-color: var(--dominant-blue);
+    color: var(--complimentary);
+    padding: 4px 8px;
+    border-radius: 50%;
+}
+.facs{
+    padding: 0 32px;
+}
+.vertical-line{
+    border-right: 1px solid black;
+    height:100%;
+
+}
+/** Faculties section */
+.academic-sections{
+display: flex;
+width: 100%;
+}
+.section-divs{
+    display: none;
+    animation: fade 0.6s;
+
+}
+.section-divs.active{
+    display: flex;
+    justify-content: space-between;
+}
+.section-btn{
+padding: 16px;
+flex: 1;
+cursor: pointer;
+}
+.section-btn.active{
+    background-color: gray;
+    color: white;
+}
+.judo{
+    position: relative;
+    overflow: hidden;
+}
+.judo:hover{
+    cursor: pointer;
+}
+.blue-rect{
+    position: absolute;
+    height: 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transition: height .3s ease-in;
+}
+.judo:hover .blue-rect{
+    height: 100%;
+    background-color: var(--dominant-blue-06);
+}
+.judo h6{
+    position: absolute;
+    bottom: 4%;
+    padding: 0 16px;
+    color: var(--complimentary);
+}
+
+/* Animations */
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+@media (max-width:992px){
+    .component-h{
+        flex-direction: column;
+    }
+    .img{
+        width: 80%;
+    }
+}
+
+@media(max-width:768px){
+    .abouts>:nth-child(2){
+    flex-direction:column-reverse;
+    }
+    .staff-members>:nth-child(2){
+    flex-direction: column-reverse;
+}
+}
+
+@media(max-width:568px){
+    .section-divs.active{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    }
+    .vertical-line{
+    border-right: 0;
+    border-bottom: 1px solid black;
+    height:100%;
+    }
+    .facs{
+    padding:32px 0;
+    }
+    .principles{
+    max-width: none;
+}
+
+}
